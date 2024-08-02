@@ -1,0 +1,15 @@
+﻿using SQLite;
+
+namespace BillCollector.Models
+{
+    public class Customer
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string CustomerCode { get; set; }
+        public string WifiName { get; set; }
+        public string WifiKey { get; set; }
+    }
+}

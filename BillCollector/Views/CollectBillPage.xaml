@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BillCollector.Views"
+             xmlns:viewmodels="clr-namespace:BillCollector.ViewModels"
+             xmlns:converters="clr-namespace:BillCollector.Converters"
+             x:Class="BillCollector.Views.CollectBillPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- NullToBoolConverter -->
+            <converters:NullToBoolConverter x:Key="NullToBoolConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewmodels:CollectBillViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="15" Spacing="15">
+        <!-- Customer Picker -->
+        <Picker Title="Select Customer"
+                ItemsSource="{Binding Customers}"
+                ItemDisplayBinding="{Binding Name}"
+                SelectedItem="{Binding SelectedCustomer}"
+                Margin="0,0,0,10"/>
+
+        <!-- Bill Date Picker -->
+        <DatePicker Date="{Binding BillDate}"
+                    Margin="0,0,0,10"
+                    HorizontalOptions="FillAndExpand" />
+
+        <!-- Amount Entry -->
+        <Entry Placeholder="Amount"
+               Keyboard="Numeric"
+               Text="{Binding Amount}"
+               Margin="0,0,0,10"
+               HeightRequest="50"
+               TextChanged="OnAmountTextChanged"/>
+
+        <!-- Warning Message -->
+        <Label Text="{Binding AmountWarning}"
+               TextColor="Red"
+               IsVisible="{Binding IsWarningVisible}"
+               Margin="0,0,0,10"/>
+
+        <!-- Save Button -->
+        <Button Text="Save"
+                Command="{Binding SaveCommand}"
+                BackgroundColor="#007ACC"
+                TextColor="White"
+                CornerRadius="5"
+                Padding="10,0"
+                HeightRequest="50"/>
+
+        <!-- Bills ListView -->
+        <ListView ItemsSource="{Binding Bills}"
+                  IsVisible="{Binding SelectedCustomer, Converter={StaticResource NullToBoolConverter}}"
+                  Margin="0,20,0,0">
+            <ListView.Header>
+                <Frame BackgroundColor="#007ACC" Padding="0" HeightRequest="40">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Date" Grid.Column="0" TextColor="White" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Text="Amount" Grid.Column="1" TextColor="White" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Grid>
+                </Frame>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame Padding="10"
+                               BackgroundColor="#FFFFFF"
+                               Margin="0,0,0,10"
+                               CornerRadius="5"
+                               HasShadow="True"
+                               BorderColor="#DDDDDD">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding BillDate, StringFormat='{0:MM/dd/yyyy}'}" Grid.Column="0" VerticalOptions="Center" FontSize="16" TextColor="#333333"/>
+                                <Label Text="{Binding Amount}" Grid.Column="1" VerticalOptions="Center" FontSize="16" TextColor="#555555"/>
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

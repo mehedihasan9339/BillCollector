@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:BillCollector.ViewModels"
+             x:Class="BillCollector.Views.CustomerListPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:CustomerListViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="10">
+        <ListView ItemsSource="{Binding Customers}"
+                  ItemTapped="OnCustomerTapped"
+                  Margin="0,20,0,0">
+            <ListView.Header>
+                <Grid BackgroundColor="#007ACC" Padding="10" HeightRequest="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Name" TextColor="White" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label Text="Phone" TextColor="White" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label Text="Email" TextColor="White" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label Text="Actions" TextColor="White" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10" BackgroundColor="White" Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Name}" Grid.Column="0" VerticalOptions="Center"/>
+                            <Label Text="{Binding Phone}" Grid.Column="1" VerticalOptions="Center"/>
+                            <Label Text="{Binding Email}" Grid.Column="2" VerticalOptions="Center"/>
+                            <Button Text="Call"
+                                    Grid.Column="3"
+                                    VerticalOptions="Center"
+                                    Command="{Binding Path=BindingContext.CallCommand, Source={x:Reference Name=CustomerListPage}}"
+                                    CommandParameter="{Binding Phone}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

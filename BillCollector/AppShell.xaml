@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:BillCollector.Views"
+       x:Class="BillCollector.AppShell">
+
+    <!-- Define the TitleView with your logo -->
+    <Shell.TitleView>
+        <Grid>
+            <Label Text="Internet Bill Collector"
+                FontSize="24"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                TextColor="Black"
+                FontFamily="Segoe UI" 
+                FontAttributes="Bold"
+                LineBreakMode="TailTruncation"
+                TextDecorations="Underline"
+                Padding="10"
+                BackgroundColor="#F0F0F0"
+                Margin="5">
+            </Label>
+        </Grid>
+    </Shell.TitleView>
+
+
+    <!-- Flyout menu items -->
+    <FlyoutItem Title="Home">
+        <ShellContent ContentTemplate="{DataTemplate local:DashboardPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Add Customer">
+        <ShellContent ContentTemplate="{DataTemplate local:AddCustomerPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Customer List">
+        <ShellContent ContentTemplate="{DataTemplate local:CustomerListPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Collect Bill">
+        <ShellContent ContentTemplate="{DataTemplate local:CollectBillPage}" />
+    </FlyoutItem>
+
+    <!-- Footer in the flyout menu -->
+    <Shell.FlyoutFooter>
+        <Grid BackgroundColor="#007ACC" Padding="10">
+            <Label Text="Developed By @ Mehedi"
+                   TextColor="Yellow"
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnFooterLabelTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+    </Shell.FlyoutFooter>
+</Shell>

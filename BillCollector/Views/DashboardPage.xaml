@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BillCollector.ViewModels"
+             x:Class="BillCollector.Views.DashboardPage">
+
+    <ContentPage.BindingContext>
+        <local:DashboardViewModel />
+    </ContentPage.BindingContext>
+    
+    <ScrollView>
+        <StackLayout Padding="15" Spacing="15">
+            <!-- Total Customers -->
+            <Frame BackgroundColor="#007ACC"
+                   Padding="15"
+                   CornerRadius="10"
+                   HasShadow="True">
+                <StackLayout>
+                    <Label Text="Total Customers"
+                           TextColor="White"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                    <Label Text="{Binding TotalCustomers}"
+                           TextColor="White"
+                           FontSize="32"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </StackLayout>
+            </Frame>
+
+            <!-- Total Revenue -->
+            <Frame BackgroundColor="#28A745"
+                   Padding="15"
+                   CornerRadius="10"
+                   HasShadow="True">
+                <StackLayout>
+                    <Label Text="Total Revenue"
+                           TextColor="White"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                    <Label Text="{Binding TotalRevenue}"
+                           TextColor="White"
+                           FontSize="32"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </StackLayout>
+            </Frame>
+
+            <!-- This Month's Revenue -->
+            <Frame BackgroundColor="#FFC107"
+                   Padding="15"
+                   CornerRadius="10"
+                   HasShadow="True">
+                <StackLayout>
+                    <Label Text="This Month's Revenue"
+                           TextColor="White"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                    <Label Text="{Binding ThisMonthRevenue}"
+                           TextColor="White"
+                           FontSize="32"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

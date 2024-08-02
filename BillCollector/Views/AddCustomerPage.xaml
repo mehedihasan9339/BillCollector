@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BillCollector.ViewModels"
+             x:Class="BillCollector.Views.AddCustomerPage">
+
+    <ContentPage.BindingContext>
+        <local:AddCustomerViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="10">
+        <Entry Placeholder="Name" Text="{Binding Name}" />
+        <Entry Placeholder="Phone" Text="{Binding Phone}" />
+        <Entry Placeholder="Email" Text="{Binding Email}" />
+        <Entry Placeholder="Customer Code" Text="{Binding CustomerCode}" />
+        <Entry Placeholder="WiFi Name" Text="{Binding WifiName}" />
+        <Entry Placeholder="WiFi Key" Text="{Binding WifiKey}" />
+        <Button Text="Save" Command="{Binding SaveCommand}" />
+    </StackLayout>
+</ContentPage>
